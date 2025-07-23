@@ -17,7 +17,7 @@ document.getElementById('loginForm')?.addEventListener('submit', function(e) {
 });
 
 // Delivery Form Handling
-const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+const scriptURL = 'AKfycbyWfNMACEMCJsXjKaPgX30LVe2GY0JAVwlMcjpEDX8';
 
 document.getElementById('deliveryForm')?.addEventListener('submit', async (e) => {
   e.preventDefault();
