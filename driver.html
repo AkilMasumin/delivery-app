@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Driver Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Submit Delivery</h2>
+  <form id="deliveryForm">
+    <input type="text" name="driver" placeholder="Driver Name" required><br>
+    <input type="text" name="customer" placeholder="Customer Account" required><br>
+    <input type="text" name="document" placeholder="Document Number" required><br>
+    
+    <label>Status:
+      <select name="status">
+        <option value="Pending">Pending</option>
+        <option value="Delivered">Delivered</option>
+      </select>
+    </label><br>
+    
+    <label>Payment:
+      <select name="payment">
+        <option value="Cash">Cash</option>
+        <option value="Card">Card</option>
+        <option value="Account">Account</option>
+      </select>
+    </label><br>
+
+    <input type="text" name="returns" placeholder="Any Returns?"><br>
+    <input type="file" id="photo"><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>
