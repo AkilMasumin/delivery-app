@@ -6,6 +6,17 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<script>
+  const user = localStorage.getItem("user");
+  const role = localStorage.getItem("role");
+
+  if (!user || !role || (window.location.pathname.includes("driver") && role !== "driver") || 
+      (window.location.pathname.includes("index") && role !== "sales")) {
+    alert("Unauthorized. Please log in.");
+    window.location.href = "login.html";
+  }
+</script>
+
   <h2>Submit Delivery</h2>
   <form id="deliveryForm">
     <input type="text" name="driver" placeholder="Driver Name" required><br>
