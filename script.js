@@ -1,4 +1,23 @@
-const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+// Login Handling
+document.getElementById('loginForm')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const username = this.username.value.trim();
+  const role = this.role.value;
+
+  if (!username || !role) return alert("All fields required");
+
+  localStorage.setItem("user", username);
+  localStorage.setItem("role", role);
+
+  if (role === "driver") {
+    window.location.href = "driver.html";
+  } else if (role === "sales") {
+    window.location.href = "index.html";
+  }
+});
+
+// Delivery Form Handling
+const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
 
 document.getElementById('deliveryForm')?.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -9,10 +28,7 @@ document.getElementById('deliveryForm')?.addEventListener('submit', async (e) =>
   let photoData = '';
   if (photoFile) {
     const reader = new FileReader();
-    reader.onload = async () => {
-      photoData = reader.result; // base64
-      submitForm(photoData);
-    };
+    reader.onload = () => submitForm(reader.result);
     reader.readAsDataURL(photoFile);
   } else {
     submitForm('');
@@ -20,7 +36,7 @@ document.getElementById('deliveryForm')?.addEventListener('submit', async (e) =>
 
   function submitForm(photo) {
     const formData = {
-      driver: form.driver.value,
+      driver: localStorage.getItem("user") || form.driver.value,
       customer: form.customer.value,
       document: form.document.value,
       status: form.status.value,
@@ -34,7 +50,7 @@ document.getElementById('deliveryForm')?.addEventListener('submit', async (e) =>
       body: JSON.stringify(formData)
     })
     .then(res => res.text())
-    .then(msg => alert("Submitted!"))
+    .then(() => alert("Delivery submitted!"))
     .catch(err => alert("Error: " + err.message));
   }
 });
